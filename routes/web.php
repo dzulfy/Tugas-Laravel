@@ -5,28 +5,26 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PosController;
+use App\Http\Controllers\Auth\LoginController;
+
+use App\Http\Controllers\DashboardController;
+
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-use App\Http\Controllers\DashboardController;
  
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 
-use App\Http\Controllers\Auth\LoginController;
- 
 Route::get('/login', [LoginController::class, 'create'])
     ->middleware('guest')
     ->name('login');
  
 Route::post('/login', [LoginController::class, 'store'])
-
-
     ->middleware('guest')
     ->name('login.store');
  
@@ -45,3 +43,6 @@ Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
     Route::post('/pos', [PosController::class, 'store'])->name('pos.store');
 });
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('/users', UserController::class);
+});

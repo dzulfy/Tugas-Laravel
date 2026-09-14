@@ -46,3 +46,28 @@ Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/users', UserController::class);
 });
+
+Route:: get('/index', function(){
+    $posts=[
+        (object)[
+            'title' => 'Dzul keren',
+            'content' => 'Content for Post 1',
+            'published' => true,
+            'created_at' => now(),
+        ],
+        (object)[
+            'title' => 'fwan keren',
+            'content' => 'Content for Post 2',
+            'published' => true,
+            'created_at' => now(),
+
+        ],
+        (object)[
+            'title' => 'evan keren',
+            'content' => 'Content for Post 3',
+            'published' => true,
+            'created_at' => now(),
+        ],
+    ];
+    return view('posts.index', compact('posts'));
+});

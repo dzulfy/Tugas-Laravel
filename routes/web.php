@@ -71,3 +71,7 @@ Route:: get('/index', function(){
     ];
     return view('posts.index', compact('posts'));
 });
+
+Route::get('/pos/history', function () {
+    return 'Riwayat Transaksi Saya';
+})->name('pos.history');

@@ -9,6 +9,11 @@
             <x-card>
                 <h3 class="text-lg font-semibold mb-2">Ringkasan Hari Ini</h3>
                 <p class="text-gray-600">Selamat datang, {{ auth()->user()->name }}.</p>
+                <div class="flex gap-2">
+                    <x-badge-view status="Aman" />
+                    <x-badge-view status="Menipis" />
+                    <x-badge-view status="Habis" />
+                </div>
             </x-card>
         </div>
     </div>

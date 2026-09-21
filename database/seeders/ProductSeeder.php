@@ -21,7 +21,31 @@ class ProductSeeder extends Seeder
                 'unit' => 'pcs',
                 'price' => 10000,
                 'stock' => 50,
-            ]
+            ],
+            [
+                'category_id' => 2,
+                'code' => 'P002',
+                'name' => 'Product 2',
+                'unit' => 'pcs',
+                'price' => 20000,
+                'stock' => 30,
+            ],
+            [
+                'category_id' => 3,
+                'code' => 'P003',
+                'name' => 'Product 3',
+                'unit' => 'pcs',
+                'price' => 15000,
+                'stock' => 20,
+            ],
+            [
+                'category_id' => 4,
+                'code' => 'P004',
+                'name' => 'Product 4',
+                'unit' => 'pcs',
+                'price' => 25000,
+                'stock' => 10,
+            ],
         ]);
     }
 }

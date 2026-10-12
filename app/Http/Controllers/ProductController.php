@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
-    public function show($id)
+        public function create()
     {
-        $product = Product::find($id);
+        $categories = Category::orderBy('name')->get();
 
-        if (!$product) {
-            return response()->json([
-                'message' => 'Produk tidak ditemukan'
-            ], 404);
-        }
+        return view('master-data.product.create', compact('categories'));
+    }
 
-        return response()->json([
-            'success' => true,
-            'data' => $product
-        ], 200);
+    public function store(StoreProductRequest $request)
+    {
+        Product::create($request->validated());
+
+        return redirect()->route('products.index')
+            ->with('success', 'Produk berhasil ditambahkan.');
+    }
+
+    public function index()
+    {
+    $products = Product::latest()->paginate(10);
+
+    return view('master-data.product.index', compact('products'));
     }
 }

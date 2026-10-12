@@ -76,9 +76,11 @@ Route::get('/pos/history', function () {
     return 'Riwayat Transaksi Saya';
 })->name('pos.history');
 
-use App\Http\Controllers\Latihan6Controller;
+// use App\Http\Controllers\Latihan6Controller;
 
-Route::get('/latihan6/fillable', [
-    Latihan6Controller::class,
-    'fillableDemo'
-]);
+// Route::get('/latihan6/fillable', [
+//     Latihan6Controller::class,
+//     'fillableDemo'
+// ]);
+
+Route::resource('categories', CategoryController::class);

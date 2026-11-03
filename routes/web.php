@@ -76,11 +76,13 @@ Route::get('/pos/history', function () {
     return 'Riwayat Transaksi Saya';
 })->name('pos.history');
 
-// use App\Http\Controllers\Latihan6Controller;
-
-// Route::get('/latihan6/fillable', [
-//     Latihan6Controller::class,
-//     'fillableDemo'
-// ]);
 
 Route::resource('categories', CategoryController::class);
+
+
+Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
+    Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
+    Route::post('/pos', [PosController::class, 'store'])->name('pos.store');
+    Route::get('/pos/{transaction}/struk', [PosController::class, 'struk'])->name('pos.struk');
+});
+

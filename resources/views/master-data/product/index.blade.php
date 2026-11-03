@@ -123,6 +123,12 @@
                                         class="text-indigo-600 hover:text-indigo-900 mr-2">
                                         Ubah
                                     </a>
+                                    
+                                    {{-- Tombol Detail --}}
+                                    <a href="{{ route('products.show', $product) }}"
+                                        class="text-gray-600 hover:text-gray-900 mr-2">
+                                        Detail
+                                    </a>
 
                                     {{-- Tombol Hapus --}}
                                     <form action="{{ route('products.destroy', $product) }}"

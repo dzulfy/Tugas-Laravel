@@ -7,7 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\Auth\LoginController;
 
-use App\Http\Controllers\DashboardController;
+
 
 use App\Http\Controllers\UserController;
 
@@ -86,3 +86,12 @@ Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
     Route::get('/pos/{transaction}/struk', [PosController::class, 'struk'])->name('pos.struk');
 });
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/reports/sales', [ReportController::class, 'sales'])->name('report.sales');
+    Route::get('/reports/sales/export', [ReportController::class, 'export'])->name('report.export');
+});
+
+use App\Http\Controllers\DashboardController;
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
